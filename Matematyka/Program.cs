@@ -13,10 +13,14 @@ namespace Matematyka
             // tymczasowe zmienne
             int wybor_menu = 0;
             bool valid = false;
+            int dobra_odp = 0;  
+            int zla_odp = 0;
+            int ilosc_pytan = 0;
 
+            // tytuł konsoli
+            Console.Title = "Matematyka - nauka"; 
 
-            Console.Title = "Matematyka - nauka"; // tytuł konsoli
-
+            // menu główne
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("--------------------------------------");
             Console.WriteLine("Witaj w programie do nauki matematyki!");
@@ -29,6 +33,7 @@ namespace Matematyka
             Console.WriteLine("--------------------------------------");
             Console.ResetColor();
 
+            // wybór działu matematyki
             valid = int.TryParse(Console.ReadLine(), out wybor_menu);
             if (valid)
             {
