@@ -17,7 +17,7 @@ namespace Matematyka
             Console.Clear();
 
             // tytuł konsoli
-            Console.Title = "Matematyka - nauka"; 
+            Console.Title = "Matematyka - nauka klasa I - III"; 
 
             // menu główne
             Console.ForegroundColor = ConsoleColor.Green;
