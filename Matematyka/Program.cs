@@ -81,7 +81,7 @@ namespace Matematyka
             int dobra_odp = 0;
             int zla_odp = 0;
             int licznik = 0;
-            string dzial = "";
+            string dzial = "dodawanie";
             Random rnd = new Random();
 
             Console.Clear();
@@ -172,15 +172,132 @@ namespace Matematyka
                 } 
             } while (!valid_dodawanie || wybor_dodawanie <= 0 || ilosc_pytan != licznik);
             // przejscie do wyswietlenia statystyki
-            statystyka(dobra_odp, zla_odp, ilosc_pytan, "dodawanie");
+            statystyka(dobra_odp, zla_odp, ilosc_pytan, dzial);
 
         }   
 
         static void Odejmowanie()
         {
-            Console.Clear();
+            bool valid_ilosc = false;
+            bool valid_odejmowanie = false;
+            int wybor_odejmowanie = 0;
+            int ilosc_pytan = 0;
+            int liczba1 = 0;
+            int liczba2 = 0;
+            int wynik = 0;
+            int odp = 0;
+            int dobra_odp = 0;
+            int zla_odp = 0;
+            int licznik = 0;
+            string dzial = "odejmowanie";
+            Random rnd = new Random();
 
-            Console.ReadKey();
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("------------------------------------------");
+            Console.WriteLine("------------------------------------------");
+            Console.WriteLine("Witaj w dziale matematycznym - odejmowanie");
+            Console.WriteLine("------------------------------------------");
+            Console.WriteLine("------------------------------------------\n\n");
+            Console.ResetColor();
+
+            // wybór ilości pytań
+            Console.Write("Ile razy chcesz zagrać? ");
+            valid_ilosc = int.TryParse(Console.ReadLine(), out ilosc_pytan);
+
+            if (valid_ilosc)
+            {
+                if (ilosc_pytan > 0)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Wybrałeś ilość pytań: " + ilosc_pytan);
+                    Console.WriteLine("\n");
+                }
+                else
+                {
+                    ostrzezenie("Wybrałeś liczbę mniejszą od 0!");
+                }
+            }
+            else
+            {
+                ostrzezenie("Nie podałeś liczby!");
+            }
+
+            // wybór zakresu liczb
+            Console.Clear();
+            Console.Write("Podaj liczbę od 0 do jakiej chcesz ćwiczyć odejmowanie: ");
+            valid_odejmowanie = int.TryParse(Console.ReadLine(), out wybor_odejmowanie);
+
+            do
+            {
+                if (valid_odejmowanie)
+                {
+                    Console.WriteLine("Wybrałeś liczbę: " + wybor_odejmowanie);
+                    Console.WriteLine("\n");
+                    if (wybor_odejmowanie > 0)
+                    {
+                        licznik++;
+                        Console.Clear();
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("---------------------------------");
+                        Console.WriteLine($"Zadanie numer {licznik}");
+                        Console.WriteLine("---------------------------------\n");
+                        
+                        liczba1 = rnd.Next(1, wybor_odejmowanie+1);
+                        liczba2 = rnd.Next(1, wybor_odejmowanie+1);
+                       
+                        if (liczba1 > liczba2)
+                        {
+                            wynik = liczba1 - liczba2;
+                            Console.Write("Ile jest: " + liczba1 + " - " + liczba2 + " = ?  ");
+                        }
+                        else if (liczba1 == liczba2)
+                        {
+                            liczba1 = liczba1 + 2;
+                            wynik = liczba1 - liczba2;
+                            Console.Write("Ile jest: " + liczba1 + " - " + liczba2 + " = ?  ");
+                        }
+                        else
+                        {
+                            wynik = liczba2 - liczba1;
+                            Console.Write("Ile jest: " + liczba2 + " - " + liczba1 + " = ?  ");
+                        }
+
+                        
+                        valid_odejmowanie = int.TryParse(Console.ReadLine(), out odp);
+                        
+                        if (valid_odejmowanie)
+                        {
+                            if (odp == wynik)
+                            {
+                                Console.WriteLine("Dobra odpowiedź!");
+                                Console.WriteLine("\n");
+                                dobra_odp++;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Zła odpowiedź!");
+                                Console.WriteLine("\n");
+                                zla_odp++;
+                            }
+                        }
+                        else
+                        {
+                            ostrzezenie("Nie podałeś liczby!");
+                        }
+                    }
+                    else
+                    {
+                        ostrzezenie("Wybrałeś liczbę mniejszą od 0!");
+                    }
+                }
+                else
+                {
+                    ostrzezenie("Nie podałeś liczby!");
+                } 
+            } while (!valid_odejmowanie || wybor_odejmowanie <= 0 || ilosc_pytan != licznik);
+            // przejscie do wyswietlenia statystyki
+            statystyka(dobra_odp, zla_odp, ilosc_pytan, dzial);
         }
 
         static void Mnozenie()
