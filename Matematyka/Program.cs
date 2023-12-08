@@ -12,9 +12,9 @@ namespace Matematyka
         {
             // tymczasowe zmienne
             int wybor_menu = 0;
-            bool valid = false;            
-            
-            
+            bool valid = false;                     
+            // czyszczenie konsoli
+            Console.Clear();
 
             // tytuł konsoli
             Console.Title = "Matematyka - nauka"; 
@@ -61,12 +61,12 @@ namespace Matematyka
                     ostrzezenie("Nie ma takiej opcji w menu!");
                 }   
             }
-
-
         }
 
+// dodawanie
         static void Dodawanie()
         {
+            // tymczasowe zmienne
             bool valid_ilosc = false;
             bool valid_dodawanie = false;
             int wybor_dodawanie = 0;
@@ -79,8 +79,9 @@ namespace Matematyka
             int zla_odp = 0;
             int licznik = 0;
             string dzial = "dodawanie";
-            Random rnd = new Random();
 
+            Random rnd = new Random();
+            // wstep do dzialu dodawanie
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("----------------------------------------");
@@ -170,9 +171,9 @@ namespace Matematyka
             } while (!valid_dodawanie || wybor_dodawanie <= 0 || ilosc_pytan != licznik);
             // przejscie do wyswietlenia statystyki
             statystyka(dobra_odp, zla_odp, ilosc_pytan, dzial);
-
-        }   
-
+        }  
+        
+// odejmowanie
         static void Odejmowanie()
         {
             bool valid_ilosc = false;
@@ -224,7 +225,7 @@ namespace Matematyka
             Console.Clear();
             Console.Write("Podaj liczbę od 0 do jakiej chcesz ćwiczyć odejmowanie: ");
             valid_odejmowanie = int.TryParse(Console.ReadLine(), out wybor_odejmowanie);
-
+            // sprawdzanie poprawnosci wprowadzonych danych i wykonanie dzialania
             do
             {
                 if (valid_odejmowanie)
@@ -259,7 +260,6 @@ namespace Matematyka
                             wynik = liczba2 - liczba1;
                             Console.Write("Ile jest: " + liczba2 + " - " + liczba1 + " = ?  ");
                         }
-
                         
                         valid_odejmowanie = int.TryParse(Console.ReadLine(), out odp);
                         
@@ -297,8 +297,10 @@ namespace Matematyka
             statystyka(dobra_odp, zla_odp, ilosc_pytan, dzial);
         }
 
+// mnozenie
         static void Mnozenie()
         {
+            // tymczasowe zmienne
             bool valid_ilosc = false;
             bool valid_mnozenie = false;
             int wybor_mnozenie = 0;
@@ -312,7 +314,7 @@ namespace Matematyka
             int licznik = 0;
             string dzial = "mnożenie";
             Random rnd = new Random();
-
+            // wstep do dzialu mnożenie
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("------------------------------------------");
@@ -417,14 +419,13 @@ namespace Matematyka
             statystyka(dobra_odp, zla_odp, ilosc_pytan, dzial);
         }
 
+// wstep do testu matematycznego
         static void Mix()
         {
-            int wybor_mix = 0;
-            int ilosc_pytan = 0;
-            bool valid_mix = false;
-            bool valid_mix1 = false;
-            int liczba1 = 0;
-            int liczba2 = 0;
+            // tymczasowe zmienne
+            int ilosc_pytan = 0;           
+            bool valid_mix1 = false;            
+            
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("------------------------------------------------");
@@ -443,7 +444,7 @@ namespace Matematyka
             Console.WriteLine("Życzę Ci powodzenia!!!");
 
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Określ ilość przeprowadzonych testów MIX (z dodawania, odejmowania, mnożenia).");
+            Console.WriteLine("\n\nOkreśl ilość przeprowadzonych testów MIX (z dodawania, odejmowania, mnożenia).");
             Console.Write("Liczba musi zawierać się w przedziale od 10 do 100 ?: ");
             Console.ResetColor();
 
@@ -483,11 +484,12 @@ namespace Matematyka
             
         }
 
+// funkcja wyjscia z programu
         static void Wyjscie()
         {
-            Console.Clear();
-
-            Console.ReadKey();
+            Console.Beep();
+            // zamkniecie konsoli
+            Environment.Exit(0);
         }
 
         static void ostrzezenie(string tekst)
@@ -497,6 +499,7 @@ namespace Matematyka
             Console.ResetColor();
         }
 
+// statystyka dla dodawania, odejmowania, mnożenia
         static void statystyka(int dobra_odp, int zla_odp, int ilosc_pytan, string dzial)
         {
             Console.Clear();
@@ -538,6 +541,7 @@ namespace Matematyka
             Main(null);
         }
 
+ // start testu matematycznego
         static void ProgramRun(int ilosc_pytan)
         {
             bool valid_mix = false;
@@ -555,7 +559,8 @@ namespace Matematyka
             int licznik = 0;
             int liczba_licznik_usera = 0;
             int dzialanie_dodawanie = 0;
-            int dzialanie_odejmowanie = 0;     
+            int dzialanie_odejmowanie = 0;   
+            int dzialanie_mnozenie = 0;
             int wynik_usera = 0;
 
 
@@ -563,18 +568,19 @@ namespace Matematyka
             // 
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write("Określ najwyższą liczbę działań(od 3 do 100): ");
+            Console.Write("\n\nOkreśl najwyższą liczbę działań(od 3 do 100): ");
 
             // wybor najwyzszej liczby w działaniach (nie dotyczy wyniku działań)
             valid_mix = int.TryParse(Console.ReadLine(), out liczba1);
 
-            // losowy wybór działań 1- dodawanie, 2 - odejmowanie, 3 - mnożenie
+            
             Random rnd = new Random();
-            wyb_dzialania = rnd.Next(1, 4);
+            
             
 
             do
             {
+                wyb_dzialania = rnd.Next(1, 4);// losowy wybór działań 1- dodawanie, 2 - odejmowanie, 3 - mnożenie
                 licznik++;
 
                 if (wyb_dzialania == 1) // dodawanie
@@ -763,12 +769,59 @@ namespace Matematyka
                 }
                 else if (wyb_dzialania == 3) // mnożenie
                 {
+                    if (liczba1 > 10)
+                    {
+                        x = rnd.Next(1, 11);
+                        y = rnd.Next(1, 11);
+                    }
+                    else
+                    {
+                        x = rnd.Next(1, liczba1 + 1);
+                        y = rnd.Next(1, liczba1 + 1);
+                    }
+                    
+                    
                     Console.Clear();
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("----------------------------------------------");
                     Console.WriteLine($"Zadanie numer {licznik}    zakres: mnożenie");
                     Console.WriteLine("----------------------------------------------\n");
                     Console.ResetColor();
+                    dzialanie_mnozenie = x * y;
+                    Console.Write($"Ile jest: {x} * {y} = ? ");
+                    valid_wynik_usera = int.TryParse(Console.ReadLine(), out wynik_usera);
+
+                    if (valid_wynik_usera)
+                    {
+                        if (wynik_usera == dzialanie_mnozenie)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("Dobra odpowiedź!!!");
+                            Console.ResetColor();
+                            Console.WriteLine("\n");
+                            odp_dobra_mnozenie++;
+                            Console.WriteLine("\n\nNaciśnij jakikolwiek klawisz aby kontynuować...");
+                            Console.ReadKey();
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("Zła odpowiedź!");
+                            Console.WriteLine("\n");
+                            Console.ResetColor();
+                            Console.WriteLine("\n");
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine($"Prawidłowy wynik to: {x} * {y} = {dzialanie_mnozenie}.  Zapamiętaj!!!");
+                            Console.ResetColor();
+                            odp_zla_mnozenie++;
+                            Console.WriteLine("\n\nNaciśnij jakikolwiek klawisz aby kontynuować...");
+                            Console.ReadKey();
+                        }
+                    }
+                    else
+                    {
+                        ostrzezenie("Nie podałeś liczby!");
+                    }
                 }
                 else
                 {
@@ -779,7 +832,58 @@ namespace Matematyka
                 }
             } while (!valid_mix || ilosc_pytan != licznik || liczba1 < 3 || liczba1 >100);
 
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Koniec testu!!!");
+            Console.WriteLine("\n\nZobacz ststystykę testu i sprawdź w czym jesteś dobry a co musisz poprawić.\n\n");
+            Console.ResetColor();
+
+            Console.WriteLine("Naciśnij jakikolwiek klawisz aby kontynuować...");
             Console.ReadKey();
+            StatystykaTestuMatematycznego(odp_dobra_dodawanie, odp_zla_dodawanie, odp_dobra_odejmowanie, odp_zla_odejmowanie, odp_dobra_mnozenie, odp_zla_mnozenie);
+        }        
+        
+// statystyka dla testu matematycznego
+        static void StatystykaTestuMatematycznego(int odp_dobra_dodawanie, int odp_zla_dodawanie, int odp_dobra_odejmowanie, int odp_zla_odejmowanie, int odp_dobra_mnozenie, int odp_zla_mnozenie)
+        {
+            Console.WriteLine("Statystyka testu matematycznego:");
+            Console.WriteLine("--------------------------------\n\n");
+            Console.WriteLine("Dodawanie:\n");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"Ilość dobrych odpowiedzi: {odp_dobra_dodawanie}");
+            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"Ilość złych odpowiedzi: {odp_zla_dodawanie}");
+            Console.ResetColor();
+            
+            Console.WriteLine("\n\nOdejmowanie:\n");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"Ilość dobrych odpowiedzi: {odp_dobra_odejmowanie}");
+            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"Ilość złych odpowiedzi: {odp_zla_odejmowanie}");
+            Console.ResetColor();
+            
+            Console.WriteLine("\n\nMnożenie:\n");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"Ilość dobrych odpowiedzi: {odp_dobra_mnozenie}");
+            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"Ilość złych odpowiedzi: {odp_zla_mnozenie}");
+            Console.ResetColor();
+            
+            Console.WriteLine("\n\nWynik ogólny:");
+            Console.WriteLine("-------------\n");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"Ilość dobrych odpowiedzi: {odp_dobra_dodawanie + odp_dobra_odejmowanie + odp_dobra_mnozenie}");
+            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"Ilość złych odpowiedzi: {odp_zla_dodawanie + odp_zla_odejmowanie + odp_zla_mnozenie}");            
+            Console.ResetColor();   
+
+            Console.WriteLine("\nNaciśnij klawisz aby wrócić do menu głównego.......");
+            Console.ReadKey();
+            Main(null);
         }
     }
 }
